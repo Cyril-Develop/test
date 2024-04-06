@@ -1,0 +1,34 @@
+# Nom du workflow
+name: Auto Update
+
+# Définition de l'événement qui déclenche le workflow
+on:
+  # Le workflow est déclenché à chaque push sur la branche principale (main)
+  push:
+    branches:
+      - main
+
+# Définition des tâches à exécuter dans le workflow
+jobs:
+  # Nom du job
+  deploy:
+    # Spécification du système d'exploitation sur lequel le job s'exécute
+    runs-on: ubuntu-latest
+
+    # Liste des étapes
+    steps:
+      # Étape pour récupérer le code du dépôt GitHub
+      - name: Checkout repository
+        # Utilisation de l'action "checkout" pour cloner le dépôt
+        uses: actions/checkout@v2
+
+      - name: SSH and execute update script on VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd chemin/vers/votre/projet
+            git pull origin nom_de_votre_branche

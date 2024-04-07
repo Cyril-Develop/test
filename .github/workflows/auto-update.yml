@@ -20,13 +20,7 @@ jobs:
       # Étape pour récupérer le code du dépôt GitHub
       - name: Checkout repository
         # Utilisation de l'action "checkout" pour cloner le dépôt
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          # Spécifiez la version de Node.js à utiliser
-          node-version: '21.6.2'
+        uses: actions/checkout@v3
 
       - name: SSH and execute update script on VPS
         uses: appleboy/ssh-action@master

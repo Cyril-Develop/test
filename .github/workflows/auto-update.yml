@@ -20,7 +20,7 @@ jobs:
       # Étape pour récupérer le code du dépôt GitHub
       - name: Checkout repository
         # Utilisation de l'action "checkout" pour cloner le dépôt
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: SSH and execute update script on VPS
         uses: appleboy/ssh-action@master
